@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Explore Filmora's Narrative Geometry: The Architecture of Emotion in the Flow of Moving Images. Discover visual storytelling techniques and cinematic tools for modern editing." name="description"/>
+<meta content="visual storytelling, cinematic tools, modern editor, timeline design, seamless transitions, intuitive interface, filmora, wondershare filmora" name="keywords"/>
+<title>Filmora - Narrative Geometry: The Architecture of Emotion in Moving Images</title>
+<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&amp;family=Roboto:wght@300&amp;family=Source+Code+Pro&amp;display=swap" rel="stylesheet"/>
+<style>
+    :root {
+        --primary-color: #2C3E50;
+        --secondary-color: #34495E;
+        --accent-1: #AED6F1;
+        --accent-2: #F5B7B1;
+        --accent-3: #39FF14;
+        --background-start: #F8F9F9;
+        --background-end: #FDFEFE;
+    }
+
+    body {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 300;
+        line-height: 1.6;
+        background: linear-gradient(to bottom, var(--background-start), var(--background-end));
+        color: var(--primary-color);
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        line-height: 1.2;
+    }
+
+    .accent-text {
+        font-family: 'Source Code Pro', monospace;
+    }
+
+    .fluid-type {
+        font-size: clamp(1rem, 2vw, 1.5rem);
+    }
+
+    .playhead {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 2px;
+        background-color: var(--accent-3);
+        z-index: 1000;
+        pointer-events: none;
+    }
+
+    .cut-marker {
+        height: 2px;
+        background-color: var(--secondary-color);
+        margin: 2rem 0;
+    }
+
+    .transition-bar {
+        height: 4px;
+        background-color: var(--accent-1);
+        width: 0;
+        transition: width 0.5s ease-in-out;
+    }
+
+    .glitch-effect:hover {
+        animation: glitch 0.3s infinite;
+    }
+
+    @keyframes glitch {
+        0% { transform: translate(2px, 2px); }
+        25% { transform: translate(-2px, -2px); }
+        50% { transform: translate(-2px, 2px); }
+        75% { transform: translate(2px, -2px); }
+        100% { transform: translate(2px, 2px); }
+    }
+
+    .parallax {
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .kinetic-text {
+        transition: transform 0.3s ease-out;
+    }
+
+    .custom-cursor {
+        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23AED6F1" d="M12 2L2 22l10-8 10 8z"/></svg>'), auto;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            transition: none !important;
+            animation: none !important;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .playhead {
+            display: none;
+        }
+    }
+</style>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // Smooth scroll behavior
+        document.documentElement.style.scrollBehavior = 'smooth';
+
+        // Playhead animation
+        window.addEventListener('scroll', () => {
+            const playhead = document.querySelector('.playhead');
+            const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            playhead.style.left = `${scrollPercentage}%`;
+        });
+
+        // Transition bars animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.width = '100%';
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.transition-bar').forEach(bar => {
+            observer.observe(bar);
+        });
+
+        // Kinetic typography
+        const kineticTexts = document.querySelectorAll('.kinetic-text');
+        window.addEventListener('scroll', () => {
+            kineticTexts.forEach(text => {
+                const rect = text.getBoundingClientRect();
+                const scrollPercentage = (rect.top / window.innerHeight) * 100;
+                text.style.transform = `translateY(${scrollPercentage / 10}px) rotate(${scrollPercentage / 50}deg)`;
+            });
+        });
+    });
+</script>
+<div class="position-fixed bottom-0 start-0 end-0 p-3 bg-dark text-light" id="cookie-consent" style="z-index: 1050; display: none;">
+<div class="container">
+<div class="row align-items-center">
+<div class="col-md-8">
+<p class="mb-0">We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.</p>
+</div>
+<div class="col-md-4 text-md-end mt-2 mt-md-0">
+<button class="btn btn-outline-light me-2" id="accept-cookies">Accept</button>
+<button class="btn btn-outline-secondary" id="decline-cookies">Decline</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const cookieConsent = document.getElementById('cookie-consent');
+    const acceptBtn = document.getElementById('accept-cookies');
+    const declineBtn = document.getElementById('decline-cookies');
+
+    function setCookie(name, value, days) {
+        let expires = "";
+        if (days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+
+    function getCookie(name) {
+        const nameEQ = name + "=";
+        const ca = document.cookie.split(';');
+        for(let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    function hideCookieConsent() {
+        cookieConsent.style.display = 'none !important';
+        cookieConsent.remove(); // Completely remove from DOM
+    }
+
+    if (!localStorage.getItem('cookieConsentShown')) {
+        cookieConsent.style.display = 'block';
+    }
+
+    acceptBtn.addEventListener('click', function() {
+        localStorage.setItem('cookieConsentShown', 'true');
+        setCookie('cookieConsent', 'accepted', 365);
+        hideCookieConsent();
+    });
+
+    declineBtn.addEventListener('click', function() {
+        localStorage.setItem('cookieConsentShown', 'true');
+        setCookie('cookieConsent', 'declined', 365);
+        hideCookieConsent();
+    });
+});
+</script>
+</head>
+<body style="display: flex; flex-direction: column; min-height: 100vh;">
+<div style="flex: 1;">
+<header>
+<header class="navbar navbar-expand-lg navbar-light bg-light">
+<div class="container">
+<a class="navbar-brand" href="/" style="font-family: 'Montserrat', sans-serif; font-weight: bold; text-transform: uppercase; color: #2C3E50;">
+      FILMORA
+    </a>
+<button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+<ul class="navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="posts.html" style="font-family: 'Roboto', sans-serif; color: #34495E;">Posts</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="about.html" style="font-family: 'Roboto', sans-serif; color: #34495E;">About</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="contacts.html" style="font-family: 'Roboto', sans-serif; color: #34495E;">Contacts</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="privacy_policy.html" style="font-family: 'Roboto', sans-serif; color: #34495E;">Privacy Policy</a>
+</li>
+</ul>
+</div>
+</div>
+</header>
+<style>
+  .navbar {
+    background: linear-gradient(to right, #F8F9F9, #FDFEFE);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .navbar-brand {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    letter-spacing: 2px;
+    transition: color 0.3s ease;
+  }
+
+  .navbar-brand:hover {
+    color: #AED6F1 !important;
+  }
+
+  .nav-link {
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    margin: 0 10px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #39FF14;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .nav-link:hover::after {
+    transform: translateX(0);
+  }
+
+  @media (max-width: 991px) {
+    .navbar-nav {
+      text-align: center;
+    }
+    .nav-link {
+      margin: 10px 0;
+    }
+  }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+  const navLinks = document.querySelectorAll('.nav-link');
+  const navbarToggler = document.querySelector('.navbar-toggler');
+  const navbarCollapse = document.querySelector('.navbar-collapse');
+  
+  navLinks.forEach(link => {
+    link.addEventListener('mouseover', () => {
+      link.style.transform = 'scale(1.05)';
+      link.style.color = '#F5B7B1';
+    });
+    
+    link.addEventListener('mouseout', () => {
+      link.style.transform = 'scale(1)';
+      link.style.color = '#34495E';
+    });
+  });
+
+  navbarToggler.addEventListener('click', () => {
+    navbarCollapse.classList.toggle('show');
+  });
+});
+</script>
+</header>
+<div class="container-fluid py-5" style="background: linear-gradient(to bottom, #F8F9F9, #FDFEFE);">
+<div class="row justify-content-center">
+<div class="col-lg-8 col-md-10 col-sm-12">
+<article>
+<h1 class="text-uppercase fw-bold mb-4" style="font-family: 'Montserrat', sans-serif; color: #2C3E50;">Color Theory in Film</h1>
+<p class="lead" style="font-family: 'Roboto', sans-serif; color: #34495E;">Dive into the psychological impact of color choices in movies and how they contribute to storytelling. As we explore the intricate world of cinematic color theory, we'll uncover how filmmakers use this powerful visual storytelling tool to evoke emotions and enhance narrative depth.</p>
+<img alt="A film strip showcasing various scenes with distinct color palettes, from warm reds to cool blues, demonstrating the range of emotions conveyed through color in cinema" class="img-fluid mb-4" src="images/image_0_posts_2.png"/>
+<h2 class="text-uppercase fw-bold mt-5 mb-3" style="font-family: 'Montserrat', sans-serif; color: #2C3E50;">The Psychology of Color</h2>
+<p style="font-family: 'Roboto', sans-serif; color: #34495E;">Colors have the power to influence our emotions and perceptions subconsciously. In film, directors and cinematographers carefully select color palettes to enhance the storytelling experience. Let's explore some common color associations in cinema:</p>
+<ul style="font-family: 'Roboto', sans-serif; color: #34495E;">
+<li><strong>Red:</strong> Passion, danger, anger</li>
+<li><strong>Blue:</strong> Calmness, sadness, isolation</li>
+<li><strong>Green:</strong> Nature, growth, envy</li>
+<li><strong>Yellow:</strong> Happiness, caution, madness</li>
+<li><strong>Purple:</strong> Royalty, mystery, spirituality</li>
+</ul>
+<h2 class="text-uppercase fw-bold mt-5 mb-3" style="font-family: 'Montserrat', sans-serif; color: #2C3E50;">Color Grading and Mood</h2>
+<p style="font-family: 'Roboto', sans-serif; color: #34495E;">Color grading is a post-professionalduction cesscess that can dramatically alter the mood of a scene. With contemporaryern editing tools like Wondershare Filmora, filmmakers can apply color grading techniques to enhance the emotional impact of their visual storytelling.</p>
+<img alt="Split-screen image showing a before and after of color grading in Filmora, with the left side showing a neutral image and the right side showing the same image with a warm, nostalgic color grade" class="img-fluid mb-4" src="images/image_1_posts_2.png"/>
+<h2 class="text-uppercase fw-bold mt-5 mb-3" style="font-family: 'Montserrat', sans-serif; color: #2C3E50;">Color Symbolism in Iconic Films</h2>
+<p style="font-family: 'Roboto', sans-serif; color: #34495E;">Many renowned directors have used color symbolism to add depth to their narratives. Here are a few examples:</p>
+<ol style="font-family: 'Roboto', sans-serif; color: #34495E;">
+<li><strong>"The Matrix":</strong> Green tint symbolizing the digital world</li>
+<li><strong>"Schindler's List":</strong> The girl in the red coat as a symbol of innocence and hope</li>
+<li><strong>"The Grand Budapest Hotel":</strong> Pastel colors reflecting nostalgia and whimsy</li>
+</ol>
+<h2 class="text-uppercase fw-bold mt-5 mb-3" style="font-family: 'Montserrat', sans-serif; color: #2C3E50;">Implementing Color Theory in Your Professionaljects</h2>
+<p style="font-family: 'Roboto', sans-serif; color: #34495E;">As you work on your own film projectsjects, consider how you can use color to enhance your storytelling. Here are some tips:</p>
+<ul style="font-family: 'Roboto', sans-serif; color: #34495E;">
+<li>Create a color palette that reflects the overall tone of your film</li>
+<li>Use color contrast to highlight important elements or characters</li>
+<li>Experiment with color grading to alter the mood of your scenes</li>
+<li>Consider the psychological associations of colors when designing sets and costumes</li>
+</ul>
+<p style="font-family: 'Roboto', sans-serif; color: #34495E;">Remember, tools like Filmora offer intuitive interfaces and seamless transitions that make it easier than ever to apply these color theory principles to your work. By mastering the use of color in your films, you can create more impactful and emotionally resonant visual stories.</p>
+<img alt="A collage of film scenes showcasing different color palettes, from the cool blues of a sci-fi film to the warm oranges of a desert scene, demonstrating the versatility of color in cinematic storytelling" class="img-fluid mt-4" src="images/image_2_posts_2.png"/>
+</article>
+</div>
+</div>
+</div>
+<script>
+    // Scroll-triggered animations
+    window.addEventListener('scroll', function() {
+        const elements = document.querySelectorAll('h2, p, img');
+        elements.forEach(element => {
+            if (isElementInViewport(element)) {
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }
+        });
+    });
+
+    function isElementInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
+
+    // Initialize elements as hidden
+    document.querySelectorAll('h2, p, img').forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(20px)';
+        element.style.transition = 'opacity 0.5s, transform 0.5s';
+    });
+</script>
+</div>
+<footer style="width: 100%; z-index: 1000;">
+<footer class="bg-secondary text-white py-4">
+<div class="container">
+<div class="row">
+<div class="col-md-4 mb-3 mb-md-0">
+<h5 class="text-uppercase mb-3" style="font-family: 'Montserrat', sans-serif;">Filmora</h5>
+<p class="mb-0" style="font-family: 'Roboto', sans-serif; font-weight: 300;">Narrative Geometry: The Architecture of Emotion in the Flow of Moving Images</p>
+</div>
+<div class="col-md-4 mb-3 mb-md-0">
+<h5 class="text-uppercase mb-3" style="font-family: 'Montserrat', sans-serif;">Navigation</h5>
+<ul class="list-unstyled">
+<li><a class="text-white text-decoration-none" href="posts.html">Posts</a></li>
+<li><a class="text-white text-decoration-none" href="about.html">About</a></li>
+<li><a class="text-white text-decoration-none" href="contacts.html">Contacts</a></li>
+<li><a class="text-white text-decoration-none" href="privacy_policy.html">Privacy Policy</a></li>
+</ul>
+</div>
+<div class="col-md-4">
+<h5 class="text-uppercase mb-3" style="font-family: 'Montserrat', sans-serif;">Connect</h5>
+<div class="d-flex">
+<a class="text-white me-3" href="#"><i class="fab fa-facebook-f"></i></a>
+<a class="text-white me-3" href="#"><i class="fab fa-twitter"></i></a>
+<a class="text-white me-3" href="#"><i class="fab fa-instagram"></i></a>
+<a class="text-white" href="#"><i class="fab fa-youtube"></i></a>
+</div>
+</div>
+</div>
+<hr class="my-4 bg-white"/>
+<div class="row align-items-center">
+<div class="col-md-6 text-center text-md-start">
+<p class="mb-0" style="font-family: 'Roboto', sans-serif; font-weight: 300;">© 2024 Filmora. All rights reserved.</p>
+</div>
+<div class="col-md-6 text-center text-md-end">
+<p class="mb-0" style="font-family: 'Source Code Pro', monospace;">
+<span class="me-2"><i class="fas fa-map-marker-alt"></i> 123 Cinema Lane, Hollywood, CA 90028</span>
+<span><i class="fas fa-phone"></i> (323) 555-1234</span>
+</p>
+</div>
+</div>
+</div>
+</footer>
+<script crossorigin="anonymous" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const footerLinks = document.querySelectorAll('footer a');
+        footerLinks.forEach(link => {
+            link.addEventListener('mouseover', function() {
+                this.style.color = '#39FF14';
+                this.style.transition = 'color 0.3s ease';
+            });
+            link.addEventListener('mouseout', function() {
+                this.style.color = 'white';
+            });
+        });
+    });
+</script>
+</footer>
+</body>
+</html>

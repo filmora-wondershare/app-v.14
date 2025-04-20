@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Explore Filmora's Narrative Geometry: The Architecture of Emotion in the Flow of Moving Images. Discover visual storytelling techniques and cinematic tools for modern editing." name="description"/>
+<meta content="visual storytelling, cinematic tools, modern editor, timeline design, seamless transitions, intuitive interface, filmora, wondershare filmora" name="keywords"/>
+<title>Filmora - Narrative Geometry: The Architecture of Emotion in Moving Images</title>
+<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&amp;family=Roboto:wght@300&amp;family=Source+Code+Pro&amp;display=swap" rel="stylesheet"/>
+<style>
+    :root {
+        --primary-color: #2C3E50;
+        --secondary-color: #34495E;
+        --accent-1: #AED6F1;
+        --accent-2: #F5B7B1;
+        --accent-3: #39FF14;
+        --background-start: #F8F9F9;
+        --background-end: #FDFEFE;
+    }
+
+    body {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 300;
+        line-height: 1.6;
+        background: linear-gradient(to bottom, var(--background-start), var(--background-end));
+        color: var(--primary-color);
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        line-height: 1.2;
+    }
+
+    .accent-text {
+        font-family: 'Source Code Pro', monospace;
+    }
+
+    .fluid-type {
+        font-size: clamp(1rem, 2vw, 1.5rem);
+    }
+
+    .playhead {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 2px;
+        background-color: var(--accent-3);
+        z-index: 1000;
+        pointer-events: none;
+    }
+
+    .cut-marker {
+        height: 2px;
+        background-color: var(--secondary-color);
+        margin: 2rem 0;
+    }
+
+    .transition-bar {
+        height: 4px;
+        background-color: var(--accent-1);
+        width: 0;
+        transition: width 0.5s ease-in-out;
+    }
+
+    .glitch-effect:hover {
+        animation: glitch 0.3s infinite;
+    }
+
+    @keyframes glitch {
+        0% { transform: translate(2px, 2px); }
+        25% { transform: translate(-2px, -2px); }
+        50% { transform: translate(-2px, 2px); }
+        75% { transform: translate(2px, -2px); }
+        100% { transform: translate(2px, 2px); }
+    }
+
+    .parallax {
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .kinetic-text {
+        transition: transform 0.3s ease-out;
+    }
+
+    .custom-cursor {
+        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23AED6F1" d="M12 2L2 22l10-8 10 8z"/></svg>'), auto;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            transition: none !important;
+            animation: none !important;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .playhead {
+            display: none;
+        }
+    }
+</style>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // Smooth scroll behavior
+        document.documentElement.style.scrollBehavior = 'smooth';
+
+        // Playhead animation
+        window.addEventListener('scroll', () => {
+            const playhead = document.querySelector('.playhead');
+            const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            playhead.style.left = `${scrollPercentage}%`;
+        });
+
+        // Transition bars animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.width = '100%';
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.transition-bar').forEach(bar => {
+            observer.observe(bar);
+        });
+
+        // Kinetic typography
+        const kineticTexts = document.querySelectorAll('.kinetic-text');
+        window.addEventListener('scroll', () => {
+            kineticTexts.forEach(text => {
+                const rect = text.getBoundingClientRect();
+                const scrollPercentage = (rect.top / window.innerHeight) * 100;
+                text.style.transform = `translateY(${scrollPercentage / 10}px) rotate(${scrollPercentage / 50}deg)`;
+            });
+        });
+    });
+</script>
+<div class="position-fixed bottom-0 start-0 end-0 p-3 bg-dark text-light" id="cookie-consent" style="z-index: 1050; display: none;">
+<div class="container">
+<div class="row align-items-center">
+<div class="col-md-8">
+<p class="mb-0">We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.</p>
+</div>
+<div class="col-md-4 text-md-end mt-2 mt-md-0">
+<button class="btn btn-outline-light me-2" id="accept-cookies">Accept</button>
+<button class="btn btn-outline-secondary" id="decline-cookies">Decline</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const cookieConsent = document.getElementById('cookie-consent');
+    const acceptBtn = document.getElementById('accept-cookies');
+    const declineBtn = document.getElementById('decline-cookies');
+
+    function setCookie(name, value, days) {
+        let expires = "";
+        if (days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+
+    function getCookie(name) {
+        const nameEQ = name + "=";
+        const ca = document.cookie.split(';');
+        for(let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    function hideCookieConsent() {
+        cookieConsent.style.display = 'none !important';
+        cookieConsent.remove(); // Completely remove from DOM
+    }
+
+    if (!localStorage.getItem('cookieConsentShown')) {
+        cookieConsent.style.display = 'block';
+    }
+
+    acceptBtn.addEventListener('click', function() {
+        localStorage.setItem('cookieConsentShown', 'true');
+        setCookie('cookieConsent', 'accepted', 365);
+        hideCookieConsent();
+    });
+
+    declineBtn.addEventListener('click', function() {
+        localStorage.setItem('cookieConsentShown', 'true');
+        setCookie('cookieConsent', 'declined', 365);
+        hideCookieConsent();
+    });
+});
+</script>
+</head>
+<body style="display: flex; flex-direction: column; min-height: 100vh;">
+<div style="flex: 1;">
+<header>
+<header class="navbar navbar-expand-lg navbar-light bg-light">
+<div class="container">
+<a class="navbar-brand" href="/" style="font-family: 'Montserrat', sans-serif; font-weight: bold; text-transform: uppercase; color: #2C3E50;">
+      FILMORA
+    </a>
+<button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+<ul class="navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="posts.html" style="font-family: 'Roboto', sans-serif; color: #34495E;">Posts</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="about.html" style="font-family: 'Roboto', sans-serif; color: #34495E;">About</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="contacts.html" style="font-family: 'Roboto', sans-serif; color: #34495E;">Contacts</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="privacy_policy.html" style="font-family: 'Roboto', sans-serif; color: #34495E;">Privacy Policy</a>
+</li>
+</ul>
+</div>
+</div>
+</header>
+<style>
+  .navbar {
+    background: linear-gradient(to right, #F8F9F9, #FDFEFE);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .navbar-brand {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    letter-spacing: 2px;
+    transition: color 0.3s ease;
+  }
+
+  .navbar-brand:hover {
+    color: #AED6F1 !important;
+  }
+
+  .nav-link {
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    margin: 0 10px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #39FF14;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .nav-link:hover::after {
+    transform: translateX(0);
+  }
+
+  @media (max-width: 991px) {
+    .navbar-nav {
+      text-align: center;
+    }
+    .nav-link {
+      margin: 10px 0;
+    }
+  }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+  const navLinks = document.querySelectorAll('.nav-link');
+  const navbarToggler = document.querySelector('.navbar-toggler');
+  const navbarCollapse = document.querySelector('.navbar-collapse');
+  
+  navLinks.forEach(link => {
+    link.addEventListener('mouseover', () => {
+      link.style.transform = 'scale(1.05)';
+      link.style.color = '#F5B7B1';
+    });
+    
+    link.addEventListener('mouseout', () => {
+      link.style.transform = 'scale(1)';
+      link.style.color = '#34495E';
+    });
+  });
+
+  navbarToggler.addEventListener('click', () => {
+    navbarCollapse.classList.toggle('show');
+  });
+});
+</script>
+</header>
+<div style="margin-bottom: 50px;">
+<div class="container mt-5">
+<div class="row">
+<div class="col-12">
+<h1 class="text-uppercase fw-bold mb-4" style="font-family: 'Montserrat', sans-serif; color: #2C3E50; font-size: clamp(2rem, 5vw, 3.5rem); letter-spacing: 2px;">
+<span class="d-inline-block position-relative">
+                    Narrative Geometry
+                    <div class="position-absolute" style="bottom: -5px; left: 0; width: 100%; height: 3px; background-color: #39FF14;"></div>
+</span>
+</h1>
+<h2 class="fw-light mb-5" style="font-family: 'Roboto', sans-serif; color: #34495E; font-size: clamp(1.2rem, 3vw, 2rem);">
+                Explore the Architecture of Emotion in the Flow of Moving Images
+            </h2>
+</div>
+</div>
+<div class="row align-items-center">
+<div class="col-md-8">
+<p class="lead" style="font-family: 'Source Code Pro', monospace; color: #2C3E50; font-size: clamp(1rem, 2vw, 1.25rem);">
+                Dive into our collection of articles on visual storytelling, contemporaryern editing techniques, and the art of crafting seamless transitions. Discover how Filmora's intuitive interface empowers creators to shape narratives and evoke emotions through the lens of cinematic tools.
+            </p>
+</div>
+<div class="col-md-4">
+<div class="d-flex justify-content-end">
+<div class="position-relative" style="width: 150px; height: 150px;">
+<div class="position-absolute" style="top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, #AED6F1, #F5B7B1); opacity: 0.7;"></div>
+<img alt="Abstract representation of film editing timeline with various emotion-evoking scenes" class="img-fluid" src="images/image_0_posts.png" style="mix-blend-mode: multiply;"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    const heading = document.querySelector('h1');
+    const text = heading.textContent;
+    heading.textContent = '';
+    
+    for (let i = 0; i < text.length; i++) {
+        const span = document.createElement('span');
+        span.textContent = text[i];
+        span.style.opacity = '0';
+        span.style.transition = `opacity 0.5s ease ${i * 0.05}s`;
+        heading.appendChild(span);
+    }
+
+    setTimeout(() => {
+        heading.querySelectorAll('span').forEach(span => {
+            span.style.opacity = '1';
+        });
+    }, 100);
+
+    window.addEventListener('scroll', () => {
+        const scrollPosition = window.scrollY;
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercentage = (scrollPosition / maxScroll) * 100;
+
+        heading.style.transform = `translateX(${scrollPercentage / 2}px)`;
+    });
+});
+</script>
+</div>
+<div class="container mt-5">
+<div class="row">
+<div class="col-12">
+<h2 class="text-uppercase mb-4" style="font-family: 'Montserrat', sans-serif; font-weight: bold;">Latest Posts</h2>
+</div>
+</div>
+<div class="row">
+<div class="col-md-6 mb-4">
+<div class="card h-100 border-0 shadow-sm">
+<img alt="A split-screen image showing different framing techniques in filmmaking, such as close-ups, wide shots, and Dutch angles, demonstrating the power of visual storytelling" class="card-img-top" src="images/image_1_posts.png"/>
+<div class="card-body">
+<h5 class="card-title" style="font-family: 'Montserrat', sans-serif; font-weight: bold;">The Power of Framing</h5>
+<p class="card-text" style="font-family: 'Roboto', sans-serif; font-weight: light;">Explore how cinematographers use framing techniques to evoke emotions and guide the viewer's eye through a scene.</p>
+<a class="btn btn-primary" href="posts_1.html" style="background-color: #2C3E50; border-color: #2C3E50;">Read More</a>
+</div>
+</div>
+</div>
+<div class="col-md-6 mb-4">
+<div class="card h-100 border-0 shadow-sm">
+<img alt="A vibrant color wheel with film strips showcasing different color palettes used in iconic movie scenes, illustrating the psychological impact of color in storytelling" class="card-img-top" src="images/image_2_posts.png"/>
+<div class="card-body">
+<h5 class="card-title" style="font-family: 'Montserrat', sans-serif; font-weight: bold;">Color Theory in Film</h5>
+<p class="card-text" style="font-family: 'Roboto', sans-serif; font-weight: light;">Dive into the psychological impact of color choices in movies and how they contribute to storytelling.</p>
+<a class="btn btn-primary" href="posts_2.html" style="background-color: #2C3E50; border-color: #2C3E50;">Read More</a>
+</div>
+</div>
+</div>
+<div class="col-md-6 mb-4">
+<div class="card h-100 border-0 shadow-sm">
+<img alt="A dynamic montage of film strips and editing timeline, showcasing various cuts and transitions to illustrate the concept of rhythm and pacing in film editing" class="card-img-top" src="images/image_3_posts.png"/>
+<div class="card-body">
+<h5 class="card-title" style="font-family: 'Montserrat', sans-serif; font-weight: bold;">Rhythm and Pacing</h5>
+<p class="card-text" style="font-family: 'Roboto', sans-serif; font-weight: light;">Analyze the art of editing and how it creates the rhythm that drives a film's emotional journey.</p>
+<a class="btn btn-primary" href="posts_3.html" style="background-color: #2C3E50; border-color: #2C3E50;">Read More</a>
+</div>
+</div>
+</div>
+<div class="col-md-6 mb-4">
+<div class="card h-100 border-0 shadow-sm">
+<img alt="An abstract representation of sound waves interacting with visual elements from a film, emphasizing the invisible yet powerful role of sound in creating emotions" class="card-img-top" src="images/image_4_posts.png"/>
+<div class="card-body">
+<h5 class="card-title" style="font-family: 'Montserrat', sans-serif; font-weight: bold;">Sound Design: The Invisible Emotion</h5>
+<p class="card-text" style="font-family: 'Roboto', sans-serif; font-weight: light;">Examine the crucial role of sound in shaping the emotional landscape of a film.</p>
+<a class="btn btn-primary" href="posts_4.html" style="background-color: #2C3E50; border-color: #2C3E50;">Read More</a>
+</div>
+</div>
+</div>
+<div class="col-md-6 mb-4">
+<div class="card h-100 border-0 shadow-sm">
+<img alt="A surrealistic collage of symbolic images from various films, demonstrating how visual metaphors are used to convey complex emotions and themes" class="card-img-top" src="images/image_5_posts.png"/>
+<div class="card-body">
+<h5 class="card-title" style="font-family: 'Montserrat', sans-serif; font-weight: bold;">Visual Metaphors in Cinema</h5>
+<p class="card-text" style="font-family: 'Roboto', sans-serif; font-weight: light;">Uncover the power of visual symbolism and how directors use it to convey complex emotions and themes.</p>
+<a class="btn btn-primary" href="posts_5.html" style="background-color: #2C3E50; border-color: #2C3E50;">Read More</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<style>
+  body {
+    background: linear-gradient(to bottom, #F8F9F9, #FDFEFE);
+    font-family: 'Roboto', sans-serif;
+  }
+  .card {
+    transition: transform 0.3s ease-in-out;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  .btn-primary:hover {
+    background-color: #34495E !important;
+    border-color: #34495E !important;
+  }
+  @media (max-width: 768px) {
+    .card-title {
+      font-size: 1.2rem;
+    }
+    .card-text {
+      font-size: 0.9rem;
+    }
+  }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      this.style.boxShadow = '0 8px 16px rgba(0,0,0,0.2)';
+    });
+    card.addEventListener('mouseleave', function() {
+      this.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+    });
+  });
+});
+</script>
+</div>
+<footer style="width: 100%; z-index: 1000;">
+<footer class="bg-secondary text-white py-4">
+<div class="container">
+<div class="row">
+<div class="col-md-4 mb-3 mb-md-0">
+<h5 class="text-uppercase mb-3" style="font-family: 'Montserrat', sans-serif;">Filmora</h5>
+<p class="mb-0" style="font-family: 'Roboto', sans-serif; font-weight: 300;">Narrative Geometry: The Architecture of Emotion in the Flow of Moving Images</p>
+</div>
+<div class="col-md-4 mb-3 mb-md-0">
+<h5 class="text-uppercase mb-3" style="font-family: 'Montserrat', sans-serif;">Navigation</h5>
+<ul class="list-unstyled">
+<li><a class="text-white text-decoration-none" href="posts.html">Posts</a></li>
+<li><a class="text-white text-decoration-none" href="about.html">About</a></li>
+<li><a class="text-white text-decoration-none" href="contacts.html">Contacts</a></li>
+<li><a class="text-white text-decoration-none" href="privacy_policy.html">Privacy Policy</a></li>
+</ul>
+</div>
+<div class="col-md-4">
+<h5 class="text-uppercase mb-3" style="font-family: 'Montserrat', sans-serif;">Connect</h5>
+<div class="d-flex">
+<a class="text-white me-3" href="#"><i class="fab fa-facebook-f"></i></a>
+<a class="text-white me-3" href="#"><i class="fab fa-twitter"></i></a>
+<a class="text-white me-3" href="#"><i class="fab fa-instagram"></i></a>
+<a class="text-white" href="#"><i class="fab fa-youtube"></i></a>
+</div>
+</div>
+</div>
+<hr class="my-4 bg-white"/>
+<div class="row align-items-center">
+<div class="col-md-6 text-center text-md-start">
+<p class="mb-0" style="font-family: 'Roboto', sans-serif; font-weight: 300;">© 2024 Filmora. All rights reserved.</p>
+</div>
+<div class="col-md-6 text-center text-md-end">
+<p class="mb-0" style="font-family: 'Source Code Pro', monospace;">
+<span class="me-2"><i class="fas fa-map-marker-alt"></i> 123 Cinema Lane, Hollywood, CA 90028</span>
+<span><i class="fas fa-phone"></i> (323) 555-1234</span>
+</p>
+</div>
+</div>
+</div>
+</footer>
+<script crossorigin="anonymous" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const footerLinks = document.querySelectorAll('footer a');
+        footerLinks.forEach(link => {
+            link.addEventListener('mouseover', function() {
+                this.style.color = '#39FF14';
+                this.style.transition = 'color 0.3s ease';
+            });
+            link.addEventListener('mouseout', function() {
+                this.style.color = 'white';
+            });
+        });
+    });
+</script>
+</footer>
+</body>
+</html>
